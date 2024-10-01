@@ -42,26 +42,42 @@ if __name__ == "__main__":
     fib_recursive, count_recursive = fibonacci_recursive(n)
     print("Fibonacci number (recursive):", fib_recursive)
     print("Step count (recursive):", count_recursive)
+    
+'''
+Explanation of the program:
+This program calculates Fibonacci numbers and their step counts using both iterative and recursive approaches.
 
-# Explanation of the program:
-# This program calculates Fibonacci numbers and their step counts using both iterative and recursive approaches.
-#
-# 1. fibonacci_iterative(n):
-#    - Implements an iterative approach to calculate the nth Fibonacci number.
-#    - Uses two variables (a, b) to store the current and next Fibonacci numbers.
-#    - Iterates n-1 times, updating a and b in each iteration.
-#    - Returns the nth Fibonacci number and the step count.
-#
-# 2. fibonacci_recursive(n):
-#    - Implements a recursive approach to calculate the nth Fibonacci number.
-#    - Uses a nested function 'fib(n)' for the actual recursion.
-#    - Increments a counter for each recursive call to track the step count.
-#    - Returns the nth Fibonacci number and the total step count.
-#
-# 3. Main execution:
-#    - Prompts the user to enter a value for n.
-#    - Calls both fibonacci_iterative() and fibonacci_recursive() functions.
-#    - Prints the calculated Fibonacci numbers and step counts for both approaches.
-#
-# The program demonstrates the difference in efficiency between iterative and recursive methods
-# for calculating Fibonacci numbers, as reflected in their respective step counts.
+1. fibonacci_iterative(n):
+   - Implements an iterative approach to calculate the nth Fibonacci number.
+   - Uses two variables (a, b) to store the current and next Fibonacci numbers.
+   - Iterates n-1 times, updating a and b in each iteration.
+   - Returns the nth Fibonacci number and the step count.
+   - Time complexity: O(n)
+   - Space complexity: O(1)
+
+2. fibonacci_recursive(n):
+   - Implements a recursive approach to calculate the nth Fibonacci number.
+   - Uses a nested function 'fib(n)' for the actual recursion.
+   - Increments a counter for each recursive call to track the step count.
+   - Returns the nth Fibonacci number and the total step count.
+   - Time complexity: O(2^n)
+   - Space complexity: O(n) due to the call stack
+
+3. Main execution:
+   - Prompts the user to enter a value for n.
+   - Calls both fibonacci_iterative() and fibonacci_recursive() functions.
+   - Prints the calculated Fibonacci numbers and step counts for both approaches.
+
+The program demonstrates the difference in efficiency between iterative and recursive methods
+for calculating Fibonacci numbers, as reflected in their respective step counts.
+
+Example input and output:
+Enter the value of n: 10
+Fibonacci number (iterative): 55
+Step count (iterative): 9
+Fibonacci number (recursive): 55
+Step count (recursive): 177
+
+This example shows that for n = 10, both methods produce the correct Fibonacci number (55),
+but the recursive method requires significantly more steps (177) compared to the iterative method (9).
+'''
