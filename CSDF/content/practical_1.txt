@@ -1,0 +1,20 @@
+Received: from mail.gmail.com (mail.gmail.com. [74.125.200.108])
+        by mx.google.com with ESMTPS id g68si12345678wrb.1.2024.10.23.09.15.00
+        for <hariomvm21@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Oct 2024 09:15:00 -0700 (PDT)
+Return-Path: <paturkarabhishek03@gmail.com>
+Received-SPF: pass (google.com: domain of paturkarabhishek03@gmail.com designates 74.125.200.108 as permitted sender) client-ip=74.125.200.108;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=2024;
+       spf=pass (google.com: domain of paturkarabhishek03@gmail.com designates 74.125.200.108 as permitted sender) smtp.mailfrom=paturkarabhishek03@gmail.com
+From: "Abhishek Paturkar" <paturkarabhishek03@gmail.com>
+To: hariomvm21@gmail.com
+Subject: Testing email header analysis
+Date: Mon, 23 Oct 2024 09:15:00 -0700
+Message-ID: <1234567890@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=2024;
+ bh=XYZXYZXYZXYZ=; b=ABCDEFGH12345;
