@@ -46,7 +46,7 @@ def solveNQueens(n: int, first_queen_col: int):
 
 if __name__ == "__main__":
     # Example usage with 4x4 board and first queen in column 1
-    n = 4
+    n = 6
     first_queen_col = 1
     board = solveNQueens(n, first_queen_col)[0]  # Get first solution
     # Print the solution
