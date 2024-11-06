@@ -1,0 +1,30 @@
+# %%
+import matplotlib.pyplot as plt
+
+# %%
+x = 2       # current position
+lr = 0.01   # learning rate  (1%)
+precision = 0.000001 # precision
+step_size = 1 # step size for iteration
+max_iter = 10000 # max iteration
+iters = 0 # iteration starting from 0
+gf = lambda x : (x + 3) ** 2  # gradient function which is given in the ps
+
+
+# %%
+gd = []
+while precision < step_size and iters < max_iter:
+    prev = x
+    x = x - lr * gf(prev)
+    step = abs(x - prev)
+    iters +=1
+    print("Iteration : ", iters, " Value : ", x)
+    gd.append(x)
+
+# %%
+print("Local Minima : ", x)
+
+# %%
+plt.plot(gd)
+
+

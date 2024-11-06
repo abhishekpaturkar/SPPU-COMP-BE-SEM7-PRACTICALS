@@ -1,0 +1,124 @@
+# %%
+import pandas as pd
+
+# %%
+df = pd.read_csv('emails.csv')
+
+# %%
+df.shape
+
+# %%
+df.head()
+
+# %%
+# Input Data
+x= df.drop(['Email No.', 'Prediction'], axis=1)
+
+# Output Data
+y = df['Prediction']
+
+# %%
+# Checking shape of x
+x.shape
+
+# Checking datatypes in x
+x.dtypes
+
+# All are int64 so no need to clean the data
+
+
+# %%
+import seaborn as sns
+
+# Plotting x and y
+sns.countplot(x = y)
+
+# %%
+# Checking the count of 0 and 1 in y
+y.value_counts()
+
+# %%
+# Feature scaling
+# Mini max scaling of x
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+
+x_scaled = scaler.fit_transform(x)
+
+# %%
+# Checking values in the x_scaled
+x_scaled
+
+# %%
+# Cross Validation
+# Spliting the data into training and testing (75% & 25%)
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.25, random_state=0)
+
+
+# %%
+# Checking if the split has done or not
+x_scaled.shape
+
+# %%
+x_train.shape
+
+# %%
+x_test.shape
+
+# %%
+# KNN Algorithm
+# Importing the libraries
+from sklearn.neighbors import KNeighborsClassifier
+
+# creating object (value of k = 5)
+knn = KNeighborsClassifier(n_neighbors=5)
+
+# %%
+# Train the algorithm
+knn.fit(x_train, y_train)
+
+# %%
+# Predicting on the test data
+y_pred = knn.predict(x_test)
+
+# %%
+# Need evaluation matrix for this (confusion matrix)   
+from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score
+from sklearn.metrics import classification_report
+
+# %%
+ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+# %%
+y_test.value_counts()
+
+# %%
+# Accuracy Score 
+
+accuracy_score(y_test, y_pred)
+
+# %%
+print(classification_report(y_test, y_pred))
+
+# %%
+# For finding the best value of k
+# calculating the array of Error rate to check for which value of k the error rate is minimum
+import numpy as np
+
+Error_rate = []
+for i in range(1, 41):
+    knn = KNeighborsClassifier(n_neighbors=i)
+    knn.fit(x_train, y_train)
+    pred_i = knn.predict(x_test)
+    Error_rate.append(np.mean(pred_i != y_test))
+
+Error_rate
+
+
+# %%
+# From above we can see that for k = 1 the accuracy can be increased
+
+

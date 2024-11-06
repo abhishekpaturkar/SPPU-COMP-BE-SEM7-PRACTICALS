@@ -1,0 +1,114 @@
+# %%
+import pandas as pd
+import seaborn as sns
+
+# %%
+df = pd.read_csv('diabetes.csv')
+
+# %%
+df.head()
+
+# %%
+# Input data
+x = df.drop(['Outcome', 'Pregnancies', 'BloodPressure', 'SkinThickness'], axis = 1)
+
+# Output data
+y = df['Outcome']
+
+# %%
+sns.countplot(x = y)
+
+# %%
+y.value_counts()
+
+# %%
+# Feature scaling
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+x_scaled = scaler.fit_transform(x)
+
+# %%
+# Cross validation
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.25, random_state=0)
+
+# %%
+x.shape
+
+# %%
+x_train.shape
+
+# %%
+x_test.shape
+
+# %%
+# KNN Classification
+
+from sklearn.neighbors import KNeighborsClassifier 
+knn = KNeighborsClassifier(n_neighbors=5)
+
+
+# %%
+knn.fit(x_train, y_train )
+
+# %%
+from sklearn.metrics import accuracy_score, ConfusionMatrixDisplay
+from sklearn.metrics import classification_report
+
+# %%
+y_pred = knn.predict(x_test)
+
+# %%
+ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+# %%
+print("Accuracy : ",accuracy_score(y_test, y_pred)*100)
+
+# %%
+print(classification_report(y_test, y_pred))
+
+# %%
+# Accuracy is Low for 1 
+# Finding the value of k where the accuracy will be high
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+# %%
+error = []
+for k in range(1, 41):
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(x_train, y_train)  
+    pred = knn.predict(x_test)
+    error.append(np.mean(pred != y_test))
+
+# %%
+plt.figure(figsize=(16, 9))
+plt.xlabel('Value of k')
+plt.ylabel('Error')
+plt.grid()
+plt.xticks(range(1, 41))
+plt.plot(range(1, 41), error, marker='.')
+
+# %%
+# Found out the value of error will be lowest at k = 11
+
+# %%
+knn = KNeighborsClassifier(n_neighbors=11)
+knn.fit(x_train, y_train)
+y_pred = knn.predict(x_test)
+
+print(classification_report(y_test, y_pred))
+
+# %%
+print("Accuracy : ",accuracy_score(y_test, y_pred)* 100)
+
+# %%
+
+
+# %%
+
+
+
