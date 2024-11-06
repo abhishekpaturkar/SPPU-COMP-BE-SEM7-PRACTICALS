@@ -18,6 +18,8 @@ df = df.drop(df_drop, axis=1)
 # %%
 df.info()
 
+
+
 # %%
 for col in df.columns.values:
     print(df[col].value_counts())
